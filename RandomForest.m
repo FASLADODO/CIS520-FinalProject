@@ -1,24 +1,27 @@
 %% Basic Random Forest on the word counts
 load('train_set/words_train.mat');
 load('train_set/train_img_prob.mat');
+load('train_set/train_cnn_feat.mat');
+load('train_set/train_color.mat');
 
 N = size(X, 1);
-% indices = crossvalind('Kfold', N, 10);
-% cp = classperf(Y);
-% errorrate_sum = 0;
-% for i = 1:10
-%     test = (indices == i); 
-%     train = ~test;
-%     B = TreeBagger(12, full(X(train, :)), Y(train));
-%     y_hat = str2num(cell2mat(B.predict( full( X(test, :) ) ) ));
-%     classperf(cp, y_hat, test)
-%     errorrate_sum = errorrate_sum + cp.ErrorRate;
-% end
+indices = crossvalind('Kfold', N, 10);
+cp = classperf(Y);
+errorrate_sum = 0;
+for i = 1:10
+    test = (indices == i); 
+    train = ~test;
+    B = TreeBagger(64, full(X(train, :)), Y(train));
+    y_hat = str2num(cell2mat(B.predict(full(X(test, :)))));
+    classperf(cp, y_hat, test)
+    errorrate_sum = errorrate_sum + cp.ErrorRate;
+end
 
 % disp(errorrate_sum / 10);
 
 % Hyperparameter tuning
-Xnew = [full(X), train_img_prob];
+Xnew = [full(X), train_color];
+Xnew = dim_reduce(Xnew);
 indices = crossvalind('Kfold', N, 2);
 train = indices == 1;
 numTrain = sum(train);
