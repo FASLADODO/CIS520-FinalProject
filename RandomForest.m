@@ -3,4 +3,5 @@ load('train_set/words_train.mat');
 B = TreeBagger(12, full(X), Y);
 
 %% Test locally on training data
-yhat = str2num(cell2mat(B.predict(full(X))));
+% yhat = str2num(cell2mat(B.predict(full(X))));
+% error = sum(abs(yhat - Y));
