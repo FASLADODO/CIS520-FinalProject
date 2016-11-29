@@ -9,7 +9,8 @@ function [Y_hat] = predict_labels(word_counts, cnn_feat, prob_feat, color_feat, 
 %           raw_tweets      nx1 cells containing all the raw tweets in text
 % Outputs:  Y_hat           nx1 predicted labels (1 for joy, 0 for sad)
 
-load('RandomForest.mat');
-Y_hat = str2num(cell2mat(B.predict(full(word_counts))));
+load('SVM_Model.mat');
+Xnew = word_counts * coeffs;
+Y_hat = full(predict(Mdl, Xnew));
 
 end
