@@ -3,22 +3,26 @@ load('train_set/train_img_prob.mat');
 load('train_set/train_cnn_feat.mat');
 load('train_set/train_color');
 
+N = size(X, 1);
 
-Xnew = train_color; %[full(X)];
-% Xnew = dim_reduce(Xnew);
-indices = crossvalind('Kfold', N, 2);
-train = indices == 1;
-numTrain = sum(train);
-test = ~train;
-numTest = sum(test);
+for numComponents = 100:100:1500
+    disp(numComponents);
+    Xnew = full(X);
+    Xnew = dim_reduce(Xnew, numComponents);
 
-Mdl = fitcsvm(Xnew(train, :), Y(train));
-y_hat = Mdl.predict(Xnew(train, :));
-train_error = sum(abs(y_hat - Y(train))) / numTrain;
+    numFolds = 10;
+    indices = crossvalind('Kfold', N, 10);
+    cp = classperf(Y);
+    train_errors = ones(numFolds, 1);
+    test_errors = ones(numFolds, 1);
+    for i = 1:numFolds
+        test = (indices == i); 
+        train = ~test;
+        Mdl = fitcsvm(Xnew(train, :), Y(train));
+        [train_errors(i), test_errors(i)] = evaluateModel(Mdl, Xnew, Y, train, test);
+    end
 
-% Calculate testing error
-y_hat = Mdl.predict(Xnew(test, :));
-test_error = sum(abs(y_hat - Y(test))) / numTest;
-
-disp(train_error);
-disp(test_error);
+    disp(mean(train_errors));
+    disp(mean(test_errors));
+%     plot(1:10, train_errors, 'rx', 1:10, test_errors, 'b+');
+end
