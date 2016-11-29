@@ -12,7 +12,7 @@ if iscell(y_hat)
     y_hat = cellfun(@str2double, y_hat); % apparently faster than the line above
 end
 
-train_error = sum(abs(y_hat - Y(train))) / numTrain;
+train_error = full(sum(abs(y_hat - Y(train))) / numTrain);
 
 % Calculate testing error
 y_hat = predict(Mdl, X(test, :));
@@ -21,7 +21,7 @@ if iscell(y_hat)
     y_hat = cellfun(@str2double, y_hat); % apparently faster than the line above
 end
 
-test_error = sum(abs(y_hat - Y(test))) / numTest;
+test_error = full(sum(abs(y_hat - Y(test))) / numTest);
 
 end
 
