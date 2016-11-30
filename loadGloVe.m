@@ -1,6 +1,6 @@
 %% Script to load relevant GloVe data from txt file
 
-numComponents = 25; % Options: 25, 50, 100, 200
+numComponents = 200; % Options: 25, 50, 100, 200
 
 % read in topwords.csv first
 fid = fopen('topwords.csv');
@@ -33,6 +33,8 @@ while ischar(tline)
         happy = cell2mat(line_data(2:(numComponents+1)));
     elseif isequal(word, 'sad')
         sad = cell2mat(line_data(2:(numComponents+1)));
+    elseif isequal(word, 'joy')
+        joy = cell2mat(line_data(2:(numComponents+1)));
     end
     tline = fgetl(fid);
 end
