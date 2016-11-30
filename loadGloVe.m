@@ -27,9 +27,11 @@ while ischar(tline)
        if wordmap.isKey(word)
         vecs(wordmap(word), :) = cell2mat(line_data(2:(numComponents+1)));
        end
-    elseif isequal(word(1), 'happy')
+    end
+    
+    if isequal(word, 'happy')
         happy = cell2mat(line_data(2:(numComponents+1)));
-    elseif isequal(word(1), 'sad')
+    elseif isequal(word, 'sad')
         sad = cell2mat(line_data(2:(numComponents+1)));
     end
     tline = fgetl(fid);
