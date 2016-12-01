@@ -5,30 +5,20 @@ load('train_set/train_color');
 
 N = size(X, 1);
 %%  Hyper-parameter tuning with Cross-Validation
-% for numComponents = 100:100:1500
-%     disp(numComponents);
-%     Xnew = full(X);
-%     Xnew = dim_reduce(Xnew, numComponents);
-% 
-%     numFolds = 10;
-%     indices = crossvalind('Kfold', N, 10);
-%     cp = classperf(Y);
-%     train_errors = ones(numFolds, 1);
-%     test_errors = ones(numFolds, 1);
-%     for i = 1:numFolds
-%         test = (indices == i); 
-%         train = ~test;
-%         Mdl = fitcsvm(Xnew(train, :), Y(train));
-%         [train_errors(i), test_errors(i)] = evaluateModel(Mdl, Xnew, Y, train, test);
-%     end
-% 
-%     disp(mean(train_errors));
-%     disp(mean(test_errors));
-% %     plot(1:10, train_errors, 'rx', 1:10, test_errors, 'b+');
-% end
+for numComponents = 100:100:1500
+    disp(numComponents);
+    Xnew = full(X(:, 1:1000));
+    % Xnew = dim_reduce(Xnew, numComponents);
+
+    [train_errors, test_errors] = crossValidate(@trainSVM, Xnew, Y, 1);
+
+    disp(mean(train_errors));
+    disp(mean(test_errors));
+%     plot(1:10, train_errors, 'rx', 1:10, test_errors, 'b+');
+end
 
 %% Model Generation
-Xnew = full(X);
-[Xnew, coeffs] = dim_reduce(Xnew, 500);
-Mdl = fitcsvm(Xnew, Y);
-save('SVM_Model.mat', 'Mdl', 'coeffs');
+% Xnew = full(X);
+% [Xnew, coeffs] = dim_reduce(Xnew, 500);
+% Mdl = fitcsvm(Xnew, Y);
+% save('SVM_Model.mat', 'Mdl', 'coeffs');
