@@ -21,8 +21,8 @@ numPredictors = 2 .^ (1:floor(log2(p - 1)));
 X = full(X);
 
 %% Tune minLeafSize hyperparameter individually
-% Confirms that the best default minLeafSize is 1, which is TreeBagger's
-% default for classification
+% Confirms that the best default minLeafSize is 1 (without pca), which is 
+% TreeBagger's default for classification
 minLeafSizeTrainError = zeros(1, length(minLeafSizes));
 minLeafSizeValError = zeros(1, length(minLeafSizes));
 for i = 1:length(minLeafSizes)
@@ -42,13 +42,17 @@ plotTrainValError(minLeafSizes, minLeafSizeTrainError, minLeafSizeValError, ...
 numPredictorsTrainError = zeros(1, length(numPredictors));
 numPredictorsValError = zeros(1, length(numPredictors));
 for i = 1:length(numPredictors)
+    fprintf('Training Random Forest with number of predictors: %d ...\n', ...
+        numPredictors(i))
     randomForest = TreeBagger(NUM_TREES, X(train, :), Y(train, :), ...
         'NumPredictorstoSample', numPredictors(i));
     [train_error, val_error] = evaluateModel(randomForest, X, Y, ...
         train, val);
     numPredictorsTrainError(i) = train_error;
-    numPredictorsTrainError(i) = val_error;
+    numPredictorsValError(i) = val_error;
 end
+plotTrainValError(numPredictors, numPredictorsTrainError, numPredictorsValError, ...
+    'Random Forest Error for Various Numbers of Predictors', 'Numbers of Predictors')
 
 %% Tune both together
 minValError = Inf;
