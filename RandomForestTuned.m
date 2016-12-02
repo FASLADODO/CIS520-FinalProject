@@ -9,13 +9,13 @@ rng('default'); % For reproducibility
 [n , p] = size(X);
 
 % Get train/test splits
-randPerm = randperm(n);
-train = randPerm(1:floor(TRAIN_PROPORTION * n));
-val = randPerm(floor(TRAIN_PROPORTION * n) + 1:end);
+[train, val] = getTrainValSplits(n);
 
 % Specify hyperparameters to be tuned
 minLeafSizes = [1, 5, 10, 15, 20];
 numPredictors = 2 .^ (1:floor(log2(p - 1)));
+reducedDimensions1 = 2 .^ (1:floor(log2(min(n, p) - 1)));
+reducedDimensions2 = 100:200:900;
 
 % Prepare X
 X = full(X);
@@ -72,3 +72,44 @@ for i = 1:length(minLeafSizes)
         end
     end
 end
+
+%% Tune PCA dimension hyperparameter individually
+pcaTrainError = zeros(1, length(reducedDimensions1));
+pcaValError = zeros(1, length(reducedDimensions1));
+[~, coeffs] = dim_reduce(X);
+for i = 1:length(reducedDimensions1)
+    fprintf('Training Random Forest with PCA dimensionality reduction k: %d ...\n', ...
+        reducedDimensions1(i))
+    X_projected = X * coeffs(:, 1:reducedDimensions1(i));
+    randomForest = TreeBagger(NUM_TREES, X_projected(train, :), Y(train, :));
+    [train_error, val_error] = evaluateModel(randomForest, X_projected, Y, ...
+        train, val);
+    pcaTrainError(i) = train_error;
+    pcaValError(i) = val_error;
+end
+plotTrainValError(reducedDimensions1, pcaTrainError, pcaValError, ...
+    'Random Forest Error for Various PCA dimensions', 'k')
+
+%% Tune PCA dimension hyperparameter individually at at finer scale
+pcaTrainError = zeros(1, length(reducedDimensions2));
+pcaValError = zeros(1, length(reducedDimensions2));
+[~, coeffs] = dim_reduce(X);
+for i = 1:length(reducedDimensions2)
+    fprintf('Training Random Forest with PCA dimensionality reduction k: %d ...\n', ...
+        reducedDimensions2(i))
+    X_projected = X * coeffs(:, 1:reducedDimensions2(i));
+    randomForest = TreeBagger(NUM_TREES, X_projected(train, :), Y(train, :));
+    [train_error, val_error] = evaluateModel(randomForest, X_projected, Y, ...
+        train, val);
+    pcaTrainError(i) = train_error;
+    pcaValError(i) = val_error;
+end
+plotTrainValError(reducedDimensions2, pcaTrainError, pcaValError, ...
+    'Random Forest Error for Various PCA dimensions', 'k')
+
+%% Train best Random Forest
+[~, coeffs] = dim_reduce(X);
+X_projected = X * coeffs(:, 1:256);
+randomForest = TreeBagger(NUM_TREES, X_projected(train, :), Y(train, :));
+[train_error, val_error] = evaluateModel(randomForest, X_projected, Y, ...
+    train, val);
