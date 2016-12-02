@@ -2,7 +2,7 @@ function [ train_errors, test_errors ] = crossValidate( getYhats, X, Y, numFolds
 %CROSSVALIDATE Summary of this function goes here
 %   getYhats - function that takes in X(train, :), Y(train), and X(test, :)
 %   and produces [predictions for X(train, :), pred. for X(test, :)]
-%   k - number of folds
+%   numFolds - number of folds
 
 N = size(X, 1);
 
@@ -10,9 +10,17 @@ indices = crossvalind('Kfold', N, numFolds);
 train_errors = ones(numFolds, 1);
 test_errors = ones(numFolds, 1);
 for i = 1:numFolds
-    if numFolds > 1
+    fprintf('Current Fold: %d\n', i);
+    if numFolds > 2
         test = (indices == i); 
         train = ~test;
+    elseif numFolds == 2
+        % We aren't doing cross-validation at this point,
+        % so train on 90% of the data and test on the other
+        % 10%
+        [trainIndices, testIndices] = getTrainValSplits(N, 0.9);
+        train = ((1:n) == trainIndices);
+        test = ((1:n) == testIndices);
     else
         % numFolds is 1, so just train on entirety of X
         train = TRUE(N, 1);
