@@ -15,18 +15,14 @@ train_errors = ones(numFolds, 1);
 test_errors = ones(numFolds, 1);
 for i = 1:numFolds
     fprintf('Current Fold: %d\n', i);
-    if numFolds > 2
+    if numFolds > 1
         test = (indices == i); 
         train = ~test;
-    elseif numFolds == 2
+    else
         % We aren't doing cross-validation at this point,
         % so train on 90% of the data and test on the other
         % 10%
         [train, test] = getTrainValSplits(N, 0.9);
-    else
-        % numFolds is 1, so just train on entirety of X
-        train = TRUE(N, 1);
-        test = FALSE(N, 1);
     end
     
     numTrain = sum(train);
