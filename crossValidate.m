@@ -4,6 +4,10 @@ function [ train_errors, test_errors ] = crossValidate( getYhats, X, Y, numFolds
 %   and produces [predictions for X(train, :), pred. for X(test, :)]
 %   numFolds - number of folds
 
+if nargin < 4
+    numFolds = 10;
+end
+
 N = size(X, 1);
 
 indices = crossvalind('Kfold', N, numFolds);
@@ -34,4 +38,3 @@ for i = 1:numFolds
     test_errors(i) = full(sum(abs(yhat_test - Y(test))) / numTest);
 end
 end
-
