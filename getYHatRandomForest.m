@@ -8,8 +8,8 @@ if nargin < 4
 end
 
 Mdl = TreeBagger(numTrees, X_train, Y_train);
-yhat_train = predict(Mdl, X_train);
-yhat_test = predict(Mdl, X_test);
+yhat_train = str2double(predict(Mdl, X_train));
+yhat_test = str2double(predict(Mdl, X_test));
 
 end
 
