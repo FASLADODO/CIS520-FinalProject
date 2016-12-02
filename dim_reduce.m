@@ -1,6 +1,7 @@
 function [ X_projected, coeffs ] = dim_reduce( X, k, rebuild )
 %dim_reduce Reduce dimensionality of X
 
+kmax = size(X, 1) - 1;
 if nargin < 2
     k = size(X, 1) - 1;
 end
@@ -10,12 +11,12 @@ end
 
 pca_filename = 'pca_coeffs.mat';
 if rebuild || ~exist(pca_filename, 'file')
-    coeffs = pca(X, 'NumComponents', k);
-    save(pca_filename, 'coeffs')
+    coeffs = pca(X, 'NumComponents', kmax);
+    save(pca_filename, 'coeffs');
 else
     coeffs = load(pca_filename);
 end
-X_projected = X * coeffs;
+X_projected = X * coeffs(:, 1:k);
 
 end
 
