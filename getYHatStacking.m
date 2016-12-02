@@ -33,6 +33,11 @@ elseif isequal(stackModel, 'Logistic Regression')
 elseif isequal(stackModel, 'SVM')
     % Train SVM
     [yhat_train, yhat_test] = getYHatSVM(train_data, Y_train, test_data);
+elseif isequal(stackModel, 'KNN')
+    % Train KNN
+    Mdl = fitcknn(train_data, Y_train);
+    yhat_train = predict(Mdl, train_data);
+    yhat_test = predict(Mdl, test_data);
 end
 end
 
