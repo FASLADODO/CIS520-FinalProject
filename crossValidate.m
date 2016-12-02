@@ -18,9 +18,7 @@ for i = 1:numFolds
         % We aren't doing cross-validation at this point,
         % so train on 90% of the data and test on the other
         % 10%
-        [trainIndices, testIndices] = getTrainValSplits(N, 0.9);
-        train = ((1:n) == trainIndices);
-        test = ((1:n) == testIndices);
+        [train, test] = getTrainValSplits(N, 0.9);
     else
         % numFolds is 1, so just train on entirety of X
         train = TRUE(N, 1);

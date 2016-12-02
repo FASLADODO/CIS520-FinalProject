@@ -8,8 +8,8 @@ if nargin < 2
 end
 
 randPerm = randperm(n);
-train = randPerm(1:floor(trainProportion * n));
-val = randPerm(floor(trainProportion * n) + 1:end);
+train = (1:n) == randPerm(1:floor(trainProportion * n));
+val = (1:n) == randPerm(floor(trainProportion * n) + 1:end);
 
 end
 
