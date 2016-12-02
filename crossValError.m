@@ -4,6 +4,10 @@ function [ train_error, test_error ] = crossValError( getYhats, X, Y, numFolds )
 %   and produces [predictions for X(train, :), pred. for X(test, :)]
 %   numFolds - number of folds
 
+if nargin < 4
+    numFolds = 10;
+end
+
 [train_errors, test_errors] = crossValidate(getYhats, X, Y, numFolds);
 train_error = mean(train_errors);
 test_error = mean(test_errors);
