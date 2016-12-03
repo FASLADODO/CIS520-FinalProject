@@ -38,6 +38,10 @@ elseif isequal(stackModel, 'KNN')
     Mdl = fitcknn(train_data, Y_train);
     yhat_train = predict(Mdl, train_data);
     yhat_test = predict(Mdl, test_data);
+elseif isequal(stackModel, 'Voting')
+    % Each model 'votes'
+    yhat_train = sum(train_data, 2) >= 2;
+    yhat_test = sum(test_data, 2) >= 2;
 end
 end
 
