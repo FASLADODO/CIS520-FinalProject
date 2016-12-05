@@ -2,6 +2,7 @@
 % Constants
 NUM_TREES = 128;
 TRAIN_PROPORTION = 0.9;
+K = 500;
 
 % Load data
 load('train_set/words_train.mat');
@@ -13,7 +14,7 @@ rng('default'); % For reproducibility
 
 % Specify hyperparameters to be tuned
 minLeafSizes = [1, 5, 10, 15, 20];
-numPredictors = 2 .^ (1:floor(log2(p - 1)));
+numPredictors = 2 .^ (1:floor(log2(K - 1) + 1));
 reducedDimensions1 = 2 .^ (1:floor(log2(min(n, p) - 1)));
 reducedDimensions2 = 100:200:900;
 
@@ -41,12 +42,13 @@ plotTrainValError(minLeafSizes, minLeafSizeTrainError, minLeafSizeValError, ...
 %% Tune numPredictors hyperparameter individually
 numPredictorsTrainError = zeros(1, length(numPredictors));
 numPredictorsValError = zeros(1, length(numPredictors));
+[X_projected, ~] = dim_reduce(X, K);
 for i = 1:length(numPredictors)
     fprintf('Training Random Forest with number of predictors: %d ...\n', ...
         numPredictors(i))
-    randomForest = TreeBagger(NUM_TREES, X(train, :), Y(train, :), ...
+    randomForest = TreeBagger(NUM_TREES, X_projected(train, :), Y(train, :), ...
         'NumPredictorstoSample', numPredictors(i));
-    [train_error, val_error] = evaluateModel(randomForest, X, Y, ...
+    [train_error, val_error] = evaluateModel(randomForest, X_projected, Y, ...
         train, val);
     numPredictorsTrainError(i) = train_error;
     numPredictorsValError(i) = val_error;
