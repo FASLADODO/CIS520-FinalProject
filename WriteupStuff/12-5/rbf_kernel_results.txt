@@ -1,0 +1,136 @@
+RBF Kernel:
+Number of Components: 100
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.117822
+Validation error: 0.268000
+Number of Components: 200
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.089022
+Validation error: 0.237556
+Number of Components: 300
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.075778
+Validation error: 0.225111
+Number of Components: 400
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.069778
+Validation error: 0.222889
+Number of Components: 500
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.058089
+Validation error: 0.222889
+Number of Components: 600
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.051111
+Validation error: 0.221778
+Number of Components: 700
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.050178
+Validation error: 0.220222
+Number of Components: 800
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.042089
+Validation error: 0.223778
+Number of Components: 900
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.040222
+Validation error: 0.220889
+Number of Components: 1000
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.038311
+Validation error: 0.229333
+Number of Components: 1100
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.035378
+Validation error: 0.239778
+Number of Components: 1200
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.036756
+Validation error: 0.246444
+Number of Components: 1300
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.035022
+Validation error: 0.239556
+Number of Components: 1400
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.035333
+Validation error: 0.254000
+Number of Components: 1500
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Current Fold: 4
+Current Fold: 5
+Current Fold: 6
+Train error: 0.030667
+Validation error: 0.255111
