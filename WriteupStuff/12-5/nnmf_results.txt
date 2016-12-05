@@ -1,0 +1,91 @@
+Non-negative Matrix Factorization (nnmf):
+Number of Components: 100
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.229333
+Validation error: 0.254667
+Number of Components: 200
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.188111
+Validation error: 0.232444
+Number of Components: 300
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.160778
+Validation error: 0.224222
+Number of Components: 400
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.159556
+Validation error: 0.225111
+Number of Components: 500
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.147444
+Validation error: 0.231111
+Number of Components: 600
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.112556
+Validation error: 0.219111
+Number of Components: 700
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.128444
+Validation error: 0.240444
+Number of Components: 800
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.100222
+Validation error: 0.223556
+Number of Components: 900
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.090333
+Validation error: 0.226444
+Number of Components: 1000
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.084778
+Validation error: 0.214667
+Number of Components: 1100
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.080333
+Validation error: 0.221333
+Number of Components: 1200
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.073667
+Validation error: 0.224444
+Number of Components: 1300
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.068556
+Validation error: 0.224667
+Number of Components: 1400
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.066000
+Validation error: 0.224222
+Number of Components: 1500
+Current Fold: 1
+Current Fold: 2
+Current Fold: 3
+Train error: 0.065556
+Validation error: 0.210000
