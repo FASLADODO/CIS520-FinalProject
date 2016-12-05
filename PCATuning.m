@@ -19,11 +19,11 @@ val_errors = zeros(length(dims), length(boxes));
 %% Run trials
 for d = 1:length(dims)
     % call PCA
-    X = dim_reduce(full(X), dims(d));
+    Xt = dim_reduce(full(X), dims(d));
     for b = 1:length(boxes)
         % get SVM crossval error
         [err1, err2] = crossValError(@(X_train, Y_train, X_test) ...
-            getYHatSVM(X_train, Y_train, X_test, 'linear', 1), X, Y, 10);
+            getYHatSVM(X_train, Y_train, X_test, 'linear', 1), Xt, Y, 10);
         train_errors(d, b) = err1;
         val_errors(d, b) = err2;
 
