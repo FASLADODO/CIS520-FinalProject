@@ -20,9 +20,9 @@ for i = 1:numFolds
         train = ~test;
     else
         % We aren't doing cross-validation at this point,
-        % so train on 90% of the data and test on the other
-        % 10%
-        [train, test] = getTrainValSplits(N, 0.9);
+        % so train on 70% of the data and test on the other
+        % 30%
+        [train, test] = getTrainValSplits(N, 0.7);
     end
     
     numTrain = sum(train);
