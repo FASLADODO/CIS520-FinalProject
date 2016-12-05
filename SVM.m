@@ -16,11 +16,11 @@ X = dim_reduce(full(X), 500);
 %     disp(boxConstraint);
 %     Xnew = full(X*coeffs(:, 1:numComponents));
 
-    [train_error, test_error] = crossValError(@(X_train, Y_train, X_test) ...
-        getYHatSVM(X_train, Y_train, X_test, 'linear', boxConstraint), X, Y, 3);
+    [train_error, val_error] = crossValError(@(X_train, Y_train, X_test) ...
+        getYHatSVM(X_train, Y_train, X_test, 'linear', 1), X, Y, 3);
 
     fprintf('Train error: %f\n', train_error);
-    fprintf('Validation error: %f\n', test_error);
+    fprintf('Validation error: %f\n', val_error);
 %     plot(1:10, train_errors, 'rx', 1:10, test_errors, 'b+');
 % end
 
