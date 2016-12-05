@@ -14,8 +14,8 @@ indices = crossvalind('Kfold', N, numFolds);
 train_errors = ones(numFolds, 1);
 test_errors = ones(numFolds, 1);
 for i = 1:numFolds
-    fprintf('Current Fold: %d\n', i);
     if numFolds > 1
+        fprintf('Current Fold: %d\n', i);
         test = (indices == i); 
         train = ~test;
     else

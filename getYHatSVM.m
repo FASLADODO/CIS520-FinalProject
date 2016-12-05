@@ -11,7 +11,10 @@ if nargin < 5
     box = 1;
 end
 
-Mdl = fitcsvm(X_train, Y_train, 'KernelFunction', KernelFunc, 'BoxConstraint', box);
+Mdl = fitcsvm(X_train, Y_train, 'OptimizeHyperparameters','auto',...
+    'HyperparameterOptimizationOptions',struct('AcquisitionFunctionName',...
+    'expected-improvement-plus'), 'CacheSize', 'maximal');
+% Mdl = fitcsvm(X_train, Y_train, 'KernelFunction', KernelFunc, 'BoxConstraint', box);
 yhat_train = predict(Mdl, X_train);
 yhat_test = predict(Mdl, X_test);
 end
