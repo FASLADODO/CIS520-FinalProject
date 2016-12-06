@@ -8,13 +8,13 @@ end
 
 numTrain = size(X_train, 1);
 numTest = size(X_test, 1);
-train_data = zeros(numTrain, 3);
-test_data = zeros(numTest, 3);
+train_data = zeros(numTrain, 2);
+test_data = zeros(numTest, 2);
 
 % Build up train and test datasets
-[train_data(:, 1), test_data(:, 1)] = getYHatSVM(X_train, Y_train, X_test, 'linear');
-[train_data(:, 2), test_data(:, 2)] = getYHatSVM(X_train, Y_train, X_test, 'rbf');
-[train_data(:, 3), test_data(:, 3)] = getYHatRandomForest(X_train, Y_train, X_test);
+[train_data(:, 1), test_data(:, 1)] = getYHatSVM(X_train, Y_train, X_test, 'linear', 0.5);
+% [train_data(:, 2), test_data(:, 2)] = getYHatSVM(X_train, Y_train, X_test, 'rbf');
+[train_data(:, 2), test_data(:, 2)] = getYHatRandomForest(X_train, Y_train, X_test);
 
 if isequal(stackModel, 'Decision Tree')
     % Train decision tree
@@ -42,6 +42,19 @@ elseif isequal(stackModel, 'Voting')
     % Each model 'votes'
     yhat_train = sum(train_data, 2) >= 2;
     yhat_test = sum(test_data, 2) >= 2;
+elseif isequal(stackModel, 'Test')
+    % Testing things
+    % Noted that random Forest gets Joy almost always correct
+    yhat_train = zeros(numTrain, 1);
+    yhat_test = zeros(numTest, 1);
+    train_sad = train_data(:, 2) == 0;
+    train_joy = find(train_data(:, 2) == 1);
+    test_sad = test_data(:, 2) == 0;
+    test_joy = find(test_data(:, 2) == 1);
+    yhat_train(train_sad) = 0;
+    yhat_test(test_sad) = 0;
+    yhat_train(train_joy) = train_data(train_joy, 1);
+    yhat_test(test_joy) = test_data(test_joy, 1);
 end
 end
 

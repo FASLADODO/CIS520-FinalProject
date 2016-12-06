@@ -4,11 +4,11 @@ load('train_set/train_cnn_feat.mat');
 load('train_set/train_color');
 
 N = size(X, 1);
-Xnew = dim_reduce(full(X), 500);
+X = dim_reduce(full(X), 500);
 
 [train_error, test_error] = crossValError(@(X_train, Y_train, X_test) ...
-    getYHatStacking(X_train, Y_train, X_test, @getYHatSVM, @getYHatRandomForest, 'Voting'), ...
-    Xnew, Y, 10);
+    getYHatStacking(X_train, Y_train, X_test, @getYHatSVM, @getYHatRandomForest, 'Test'), ...
+    X, Y, 10);
 
 disp(train_error);
 disp(test_error);

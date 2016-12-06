@@ -3,8 +3,10 @@ function [ yhat_train, yhat_test ] = getYHatNN( X_train, Y_train, X_test )
 %   Detailed explanation goes here
 
 Ynew = getOneHotY(Y_train);
-net = pattern_net(500);
-net = train(net, X_train', Ynew');
+net = patternnet(500);
+net.trainFcn = 'trainscg';
+net.performParam.regularization = 0.1;
+net = train(net, X_train', Ynew);
 
 yhat_train = (vec2ind(net(X_train')) - 1)';
 

@@ -8,7 +8,7 @@ rng('default'); % For reproducibility
 [n , p] = size(X);
 
 % Get train/test splits
-trainProportion = 0.9;
+trainProportion = 0.7;
 randPerm = randperm(n);
 train = randPerm(1:floor(trainProportion * n));
 test = randPerm(floor(trainProportion * n) + 1:end);

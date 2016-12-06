@@ -18,5 +18,8 @@ else
 end
 X_projected = X * coeffs(:, 1:k);
 
+% [W, H] = nnmf(X, k);
+% X_projected = W*H;
+% coeffs = 0;
 end
 

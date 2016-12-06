@@ -15,6 +15,7 @@ end
 %    'HyperparameterOptimizationOptions',struct('AcquisitionFunctionName',...
 %    'expected-improvement-plus'), 'CacheSize', 'maximal');
 Mdl = fitcsvm(X_train, Y_train, 'KernelFunction', KernelFunc, 'BoxConstraint', box);
+% Mdl = fitcdiscr(X_train, Y_train, 'discrimType', 'pseudoLinear');
 yhat_train = predict(Mdl, X_train);
 yhat_test = predict(Mdl, X_test);
 end
