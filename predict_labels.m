@@ -10,7 +10,7 @@ function [Y_hat] = predict_labels(word_counts, cnn_feat, prob_feat, color_feat, 
 % Outputs:  Y_hat           nx1 predicted labels (1 for joy, 0 for sad)
 
 load('words_train.mat');
-[X, coeffs] = dim_reduce(X, 500);
+[X, coeffs] = dim_reduce(full(X), 500);
 Mdl = fitcsvm(X, Y, 'KernelFunction', 'rbf', 'BoxConstraint', 2.4, ...
     'KernelScale', 4.00, 'Prior', 'uniform');
 %load('SVM_Model.mat');
