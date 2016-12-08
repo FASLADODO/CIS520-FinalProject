@@ -258,4 +258,43 @@ Mdl = fitcsvm(Xnew, Y, 'KernelFunction', 'rbf', 'BoxConstraint', 2.4, ...
     'KernelScale', 4.00, 'Prior', 'uniform');
 save('SVM_Model.mat', 'Mdl', 'coeffs');
 
-%% 
+% Note: increasing dimensions from PCA to 900 improved validation error to
+% 0.200267, will try this as next submission
+
+%% Find 10-40 opt trials
+
+% setup variables
+widths = 10:5:40;
+boxes = [7 10 16 22 30 40 50 60 73 87 100 150 200 250 300 350 400];
+priors = {'uniform'};
+
+train_errors = zeros(length(widths), length(boxes), length(priors));
+val_errors = zeros(length(widths), length(boxes), length(priors));
+num_trials = 1;
+
+% run trials
+for p = 1:length(priors)
+    fprintf('********************************************\n');
+    fprintf('Now using a %s prior\n', priors{p});
+    fprintf('********************************************\n');
+    for w = 1:length(widths)
+        for b = 1:length(boxes)
+            for t = 1:num_trials
+                % get SVM crossval error
+                [err1, err2] = crossValError(@(X_train, Y_train, X_test) ...
+                    getYHatSVM(X_train, Y_train, X_test, 'rbf', boxes(b), widths(w), priors{p}),...
+                    Xt, Y, 3);
+                train_errors(w, b, p) = train_errors(w, b, p) + err1;
+                val_errors(w, b, p) = val_errors(w, b, p) + err2;
+            end
+
+            %means
+            train_errors(w, b, p) = train_errors(w, b, p) / num_trials;
+            val_errors(w, b, p) = val_errors(w, b, p) / num_trials;
+
+            % print progress
+            fprintf('RBF with %f kernel scale and box size %f had %f training and %f val error\n',...
+                widths(w), boxes(b), train_errors(w, b, p), val_errors(w, b, p));
+        end
+    end
+end
