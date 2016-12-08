@@ -14,7 +14,7 @@ load('words_train.mat');
 Mdl = fitcsvm(X, Y, 'KernelFunction', 'rbf', 'BoxConstraint', 2.4, ...
     'KernelScale', 4.00, 'Prior', 'uniform');
 %load('SVM_Model.mat');
-Xnew = word_counts * coeffs;
-Y_hat = full(predict(Mdl, Xnew));
+Xnew = word_counts * coeffs(:, 1:500);
+Y_hat = full(predict(Mdl, full(Xnew)));
 
 end
