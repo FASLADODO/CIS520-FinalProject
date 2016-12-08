@@ -298,3 +298,88 @@ for p = 1:length(priors)
         end
     end
 end
+
+%% Find optimum for 20.00 scale
+
+% setup variables
+widths = 20.00;
+boxes = [46.5:0.25:47.5 51.5:0.25:52.5 81.5:0.25:82.5];
+% 47, 52, and 82 achieved lowest 3-fold single run in the range 40-87
+priors = {'uniform'};
+
+train_errors = zeros(length(widths), length(boxes), length(priors));
+val_errors = zeros(length(widths), length(boxes), length(priors));
+num_trials = 5;
+
+% run trials
+for p = 1:length(priors)
+    fprintf('********************************************\n');
+    fprintf('Now using a %s prior\n', priors{p});
+    fprintf('********************************************\n');
+    for w = 1:length(widths)
+        for b = 1:length(boxes)
+            for t = 1:num_trials
+                fprintf('Trial %d\n', t);
+                % get SVM crossval error
+                [err1, err2] = crossValError(@(X_train, Y_train, X_test) ...
+                    getYHatSVM(X_train, Y_train, X_test, 'rbf', boxes(b), widths(w), priors{p}),...
+                    Xt, Y, 6);
+                train_errors(w, b, p) = train_errors(w, b, p) + err1;
+                val_errors(w, b, p) = val_errors(w, b, p) + err2;
+            end
+
+            %means
+            train_errors(w, b, p) = train_errors(w, b, p) / num_trials;
+            val_errors(w, b, p) = val_errors(w, b, p) / num_trials;
+
+            % print progress
+            fprintf('RBF with %f kernel scale and box size %f had %f training and %f val error\n',...
+                widths(w), boxes(b), train_errors(w, b, p), val_errors(w, b, p));
+        end
+    end
+end
+
+%% Finer optimum for 20.00 scale
+
+% setup variables
+widths = 20.00;
+boxes = [46.7 46.8 47.75 51.9 52.1 52.4 52.6];
+priors = {'uniform'};
+
+train_errors = zeros(length(widths), length(boxes), length(priors));
+val_errors = zeros(length(widths), length(boxes), length(priors));
+num_trials = 5;
+
+% run trials
+for p = 1:length(priors)
+    fprintf('********************************************\n');
+    fprintf('Now using a %s prior\n', priors{p});
+    fprintf('********************************************\n');
+    for w = 1:length(widths)
+        for b = 1:length(boxes)
+            for t = 1:num_trials
+                fprintf('Trial %d\n', t);
+                % get SVM crossval error
+                [err1, err2] = crossValError(@(X_train, Y_train, X_test) ...
+                    getYHatSVM(X_train, Y_train, X_test, 'rbf', boxes(b), widths(w), priors{p}),...
+                    Xt, Y, 6);
+                train_errors(w, b, p) = train_errors(w, b, p) + err1;
+                val_errors(w, b, p) = val_errors(w, b, p) + err2;
+            end
+
+            %means
+            train_errors(w, b, p) = train_errors(w, b, p) / num_trials;
+            val_errors(w, b, p) = val_errors(w, b, p) / num_trials;
+
+            % print progress
+            fprintf('RBF with %f kernel scale and box size %f had %f training and %f val error\n',...
+                widths(w), boxes(b), train_errors(w, b, p), val_errors(w, b, p));
+        end
+    end
+end
+
+% this achieved a low point for 6-fold validation error over 5 trials
+% at 0.198622 for 46.75 box size
+
+% NOTE: increasing dimensions from PCA to 800 improved validation error to
+% 0.192111 (on 2 trials), which will be third submission
