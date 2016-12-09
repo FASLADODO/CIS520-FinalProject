@@ -3,9 +3,11 @@ load('train_set/train_img_prob.mat');
 load('train_set/train_cnn_feat.mat');
 load('train_set/train_color.mat');
 
+[n, p] = size(X);
+
 Xnew = full(X); %[full(X)];
 Xnew = dim_reduce(Xnew);
-indices = crossvalind('Kfold', N, 2);
+indices = crossvalind('Kfold', n, 2);
 train = indices == 1;
 numTrain = sum(train);
 test = ~train;
@@ -19,5 +21,5 @@ train_error = sum(abs(y_hat - Y(train))) / numTrain;
 y_hat = Mdl.predict(Xnew(test, :));
 test_error = sum(abs(y_hat - Y(test))) / numTest;
 
-disp(train_error);
-disp(test_error);
+fprintf('Train error: %d\n', train_error)
+fprintf('Test error: %d\n', test_error)
