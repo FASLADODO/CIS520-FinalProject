@@ -10,7 +10,7 @@ if nargin < 3
 end
 
 pca_filename = 'pca_coeffs.mat';
-if rebuild || ~exist(pca_filename, 'file')
+if rebuild | ~exist(pca_filename, 'file')
     coeffs = pca(X);
     save(pca_filename, 'coeffs');
 else
