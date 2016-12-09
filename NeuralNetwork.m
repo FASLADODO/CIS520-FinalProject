@@ -1,4 +1,6 @@
 clear
+close all force
+
 %% Setup Cortexsys
 addpath('Cortexsys/nn_gui');
 addpath('Cortexsys/nn_core');
@@ -32,10 +34,11 @@ Y = full(Y);
 % (lowercase 'y' denotes that it is a vector)
 rng('default')
 [train, val] = getTrainValSplits(n, TRAIN_PROPORTION);
-X_train = X(train, :);
-y_train = Y(train, :);
-X_val = X(val, :);
-y_val = Y(val, :);
+X_train = X(:, train);
+y_train = Y(train);
+X_val = X(:, val);
+y_val = Y(val);
+m = size(X_train, 2);
 
 % Get one-hot represenation of Y
 % (uppercase 'Y' denotes that it is a matrix)
@@ -75,9 +78,14 @@ params.miniBatchSize = 128; % set size of mini-batches**
 % Regularization parameters
 params.maxnorm = 0; % enable max norm regularization if ~= 0
 params.lambda = 1; % enable L2 regularization if ~= 0
+
 % params.alphaTau = 0.25*params.maxIter; % Learning rate decay
 % params.denoise = 0.25; % enable input denoising if ~= 0
 % params.dropout = 0.6; % enable dropout regularization if ~= 0
+params.alphaTau = 0.25*params.maxIter; % Learning rate decay
+params.denoise = 0; % enable input denoising if ~= 0
+params.dropout = 0; % enable dropout regularization if ~= 0
+
 params.tieWeights = false; % enable tied weights for autoencoder?
 params.beta_s = 0; % Strength of sparsity penalty; set to 0 to disable
 params.rho_s0 = 0; % Target hidden unit activation for sparsity penalty
@@ -96,7 +104,7 @@ params.cg.eps = 1e-4; % Update threshold for CG
 params.cg.mbIters = 10; % How many CG iterations per minibatch?
 
 %% Initialize network
-nn = nnLayers(params, layers, X_train, y_train, {}, {}, defs);
+nn = nnLayers(params, layers, X_train, Y_train, {}, {}, defs);
 nn.initWeightsBiases();
 
 %% Train network
