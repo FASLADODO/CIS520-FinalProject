@@ -9,12 +9,26 @@ function [Y_hat] = predict_labels(word_counts, cnn_feat, prob_feat, color_feat, 
 %           raw_tweets      nx1 cells containing all the raw tweets in text
 % Outputs:  Y_hat           nx1 predicted labels (1 for joy, 0 for sad)
 
-load('words_train.mat');
-[X, coeffs] = dim_reduce(full(X), 800);
-Mdl = fitcsvm(X, Y, 'KernelFunction', 'rbf', 'BoxConstraint', 46.75, ...
-    'KernelScale', 20.00, 'Prior', 'uniform');
-%load('SVM_Model.mat');
-Xnew = word_counts * coeffs(:, 1:800);
+% %% Load data
+labeled = load('words_train.mat');
+unlabeled = load('words_train_unlabeled.mat');
+load('coeffs.mat');
+X_labeled = labeled.X;
+Y = labeled.Y;
+X_unlabeled = unlabeled.X;
+X_all = [X_labeled; X_unlabeled];
+[n, p] = size(X_labeled);
+
+%% Project data down
+K = 500;
+X_all_projected = X_all * coeffs;
+X_projected = X_all_projected(1:n, :);
+
+%% Train model
+Mdl = fitcsvm(X_projected, Y, 'KernelFunction', 'linear', 'BoxConstraint', 0.5);
+% load('SVM_Model.mat');
+% Xnew = word_counts * coeffs(:, 1:K);
+Xnew = word_counts * coeffs;
 Y_hat = full(predict(Mdl, full(Xnew)));
 
 end
