@@ -30,6 +30,8 @@ for i = 1:numFolds
 
     [yhat_train, yhat_val] = getYhats(X(train, :), Y(train), X(val, :));
     
+    fprintf('Confusion matrix: %s\n', mat2str(generateConfusionMatrix(Y(val), yhat_val)));
+
     train_errors(i) = full(sum(abs(yhat_train - Y(train))) / numTrain);
     val_errors(i) = full(sum(abs(yhat_val - Y(val))) / numTest);
 end
