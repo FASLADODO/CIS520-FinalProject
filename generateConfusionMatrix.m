@@ -14,7 +14,5 @@ C(1, 1) = sum(y(zeros_idx) == yhat(zeros_idx)) / num_zeros;
 C(1, 2) = sum(y(zeros_idx) ~= yhat(zeros_idx)) / num_zeros;
 C(2, 1) = sum(y(ones_idx) ~= yhat(ones_idx)) / num_ones;
 C(2, 2) = sum(y(ones_idx) == yhat(ones_idx)) / num_ones;
-
-disp(C);
 end
 
