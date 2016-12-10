@@ -48,17 +48,28 @@ How to run: dim_reduce(X, desiredNumberOfComponents),
 
 
 ## Other things we tried:
-- Neural Networks (NNTuning.m, NeuralNetworkCortexsys.m, 
-NeuralNetworkLightNet.m, getOneHotY.m, getYHatNN.m)
+- Neural Networks (NNTuning.m, NeuralNetworkCortexsys.m, getOneHotY.m,
+getYHatNN.m) in UnusedModels/NeuralNetworks and Tuning/
+
 - GloVe (loadGloVe.m, GloVe.m, gloveTransform.m, evaluateGloVe.m)
+in UnusedModels/GloVe
+
 - Random Forest (RandomForest.m, RandomForestTuned.m, random_forest.m,
-getYHatRandomForest.m)
-- Logistic Regression (LogisticTuned.m)
+getYHatRandomForest.m) in UnusedModels/ and Tuning/
+
+- Logistic Regression (LogisticTuned.m) in Tuning/
+
 - Discriminant Ensemble over Random Subspaces (Ensemble.m, getYHatEnsemble.m,
-discrimEnsemble.m)
-- RBF SVM (RBFTuned.m)
-- Stacking (Stacking.m, getYHatStacking.m)
-- TF/IDF (tfidf.m)
-- Boosting (Boosting.m)
-- GMM (GMM.m, getYHatGMM.m)
-- Isomap (Isomap.m, IsomapTuning.m, L2_distance.m)
+discrimEnsemble.m) in UnusedModels/Ensembling
+
+- RBF SVM (RBFTuned.m) in Tuning/
+
+- Stacking (Stacking.m, getYHatStacking.m) in UnusedModels/Ensembling
+
+- TF/IDF (tfidf.m) in UnusedModels/TFIDF
+
+- Boosting (Boosting.m) in UnusedModels/Ensembling
+
+- GMM (GMM.m, getYHatGMM.m) in UnusedModels/
+
+- Isomap (Isomap.m, IsomapTuning.m, L2_distance.m) in UnusedModels/Isomap
