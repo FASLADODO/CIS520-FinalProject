@@ -1,4 +1,4 @@
-function [ randomForest ] = random_forest( X, Y )
+function [ randomForest ] = RandomForestBayesianTuning( X, Y )
 %random_forest Trains a random forest
 %   Trains a random forest with Bayesian optimized hyperparameters:
 %   - leaf size
@@ -24,7 +24,7 @@ hyperparametersRF = [minLeafSize; numPredictors];
 % Optimize hyperparameters
 results = bayesopt(@(params) oobErrRF(params, X(train, :), Y(train, :)), hyperparametersRF, ...
     'AcquisitionFunctionName', 'expected-improvement-plus', 'Verbose', 0);
-bestHyperparameters = results.XAtMinObjective
+bestHyperparameters = results.XAtMinObjective;
 
 % Train best random forest
 randomForest = TreeBagger(128, X(train, :), Y(train, :), ...
