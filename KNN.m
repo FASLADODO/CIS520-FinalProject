@@ -11,12 +11,8 @@ IM = arrayfun(@(x) imhist(rgb2gray(reshape_img(train_img(x, :)))), 1:4500, 'Unif
 IMres = cell2mat(IM)';
 
 %% Cross-Validation
-nn = 50;
-train_errors = zeros(nn, 1);
-val_errors = zeros(nn, 1);
-for i = 1:nn
-    [train_errors(i), val_errors(i)] = crossValError(@(X_train, Y_train, X_test) ...
-        getYHatKNN(X_train, Y_train, X_test, i), IMres, Y, 3);
-    fprintf('Training and val errors for %d nn are %f and %f\n', ...
-        i, train_errors(i), val_errors(i));
-end
+[train_error, val_error] = crossValError(@(X_train, Y_train, X_test) ...
+    getYHatKNN(X_train, Y_train, X_test, 10), IMres, Y, 10);
+
+fprintf('Train error: %f\n', train_error);
+fprintf('Validation error: %f\n', val_error);
