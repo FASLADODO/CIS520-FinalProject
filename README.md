@@ -42,8 +42,9 @@ How to run: run('KNN.m')
 
 ## Semi-Supervised Dimensionality Reduction: 
 Model: PCA  
-Files: dim_reduce.m  
-How to run: dim_reduce(X, desiredNumberOfComponents)  
+Files: dim_reduce.m, getSemiSupervisedProjections
+How to run: dim_reduce(X, desiredNumberOfComponents),
+            getSemiSupervisedProjections()
 
 
 ## Other things we tried:
