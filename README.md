@@ -1,4 +1,5 @@
 # CIS520-FinalProject
+#### Seth Bartynski, Trevin Gandhi, Brady Neal
 
 ## Code explanation: 
 For each model, we typically have two files specific to that
