@@ -3,11 +3,11 @@
 ## Code explanation: 
 For each model, we typically have two files specific to that
 model. One is a script (i.e. SVM.m) and the other is a function of the form
-getYHat***.m (i.e. getYHatSVM.m). The reason we did this is because we have two
+getYHatXXX.m (i.e. getYHatSVM.m). The reason we did this is because we have two
 functions, crossValidate.m and crossValError.m (the latter of which is a wrapper
 around the former that returns the training and validation errors), 
 which take in the observations, their labels, and a function
-handle. This function handle is one of the getYHat*** functions, and takes in
+handle. This function handle is one of the getYHatXXX functions, and takes in
 training observations, training labels, and validation observations. Then, it
 trains a model on the training data and generates yhats for the training data
 and the validation data. 
