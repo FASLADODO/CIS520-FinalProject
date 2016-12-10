@@ -1,13 +1,16 @@
+%% Add paths
+addpath(genpath('Models/'));
+addpath(genpath('Utils/'));
+
+%% Load data
 load('glove_vecs200.mat');
 load('train_set/words_train.mat');
-% load('train_set/train_img_prob.mat');
-% load('train_set/train_cnn_feat.mat');
-% load('train_set/train_color.mat');
 
+%% Preprocess X
 N = size(X, 1);
-
 X = full(X);
 
+%% Cross-validate
 Xnew = gloveTransform(X, vecs);
 % Xnew = dim_reduce(X, numComponents);
 

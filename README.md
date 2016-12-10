@@ -21,6 +21,10 @@ scripts were also sometimes modified to do hyperparameter tuning, as we could
 just wrap repeated calls to crossValError in for loops that iterated over
 possible hyperparameters.
 
+## Notes:
+- All getYHatXXX functions are in the Models/ folder
+- Functions such as cross validation and plotting are in the Utils/ folder
+
 ## Generative Method: 
 Model: Naive Bayes  
 Files: NaiveBaes.m, getYHatNB.m  
@@ -45,7 +49,7 @@ How to run: dim_reduce(X, desiredNumberOfComponents)
 ## Other things we tried:
 - Neural Networks (NNTuning.m, NeuralNetworkCortexsys.m, 
 NeuralNetworkLightNet.m, getOneHotY.m, getYHatNN.m)
-- GloVe (loadGloVe.m, GloVe.m, gloveTransform.m)
+- GloVe (loadGloVe.m, GloVe.m, gloveTransform.m, evaluateGloVe.m)
 - Random Forest (RandomForest.m, RandomForestTuned.m, random_forest.m,
 getYHatRandomForest.m)
 - Logistic Regression (LogisticTuned.m)

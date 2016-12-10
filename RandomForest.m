@@ -1,4 +1,10 @@
-%% Basic Random Forest on the word counts
+% Basic Random Forest on the word counts
+
+%% Add paths
+addpath(genpath('Models/'));
+addpath(genpath('Utils/'));
+
+%% Load data
 load('train_set/words_train.mat');
 load('train_set/train_img_prob.mat');
 load('train_set/train_cnn_feat.mat');

@@ -1,11 +1,16 @@
+%% Add paths
+addpath(genpath('Models/'));
+addpath(genpath('Utils/'));
+
+%% Load data
 load('train_set/words_train.mat');
 load('train_set/train_raw_img.mat');
 
-% prepare image data by converting into grayscale vectors
+%% Prepare image data by converting into grayscale vectors
 IM = arrayfun(@(x) imhist(rgb2gray(reshape_img(train_img(x, :)))), 1:4500, 'UniformOutput', false);
 IMres = cell2mat(IM)';
 
-% train model
+%% Cross-Validation
 nn = 50;
 train_errors = zeros(nn, 1);
 val_errors = zeros(nn, 1);

@@ -1,3 +1,8 @@
+%% Add paths
+addpath(genpath('Models/'));
+addpath(genpath('Utils/'));
+
+%% Load data
 load('train_set/words_train.mat');
 
 N = size(X, 1);

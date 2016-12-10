@@ -1,12 +1,15 @@
+%% Add paths
+addpath(genpath('Models/'));
+addpath(genpath('Utils/'));
+
+%% Load data
 load('train_set/words_train.mat');
-load('train_set/train_img_prob.mat');
-load('train_set/train_cnn_feat.mat');
-load('train_set/train_color.mat');
 
+%% Preprocess X
 N = size(X, 1);
+Xnew = full(X);
 
-Xnew = [full(X), train_color];
-
+%% Run model
 t = templateTree('MaxNumSplits', 5);
 ClassTreeEns = fitensemble(Xnew,Y,'AdaBoostM1',200,t,'Holdout', 0.5);
 
