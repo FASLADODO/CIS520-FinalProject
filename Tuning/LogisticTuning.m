@@ -1,3 +1,7 @@
+%% Add paths
+addpath(genpath('../'));
+addpath(genpath('../Utils/'));
+
 %% Logistic Regression Tuning
 lambdas = linspace(1.5e-4, 5e-4, 10);
 bestValError = Inf;

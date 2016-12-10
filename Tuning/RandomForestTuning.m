@@ -1,3 +1,7 @@
+%% Add paths
+addpath(genpath('../'));
+addpath(genpath('../Utils/'));
+
 %% Setup
 % Constants
 NUM_TREES = 128;

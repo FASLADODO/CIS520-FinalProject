@@ -2,6 +2,10 @@
 
 %% Initialization
 
+%% Add paths
+addpath(genpath('../'));
+addpath(genpath('../Utils/'));
+
 % load data
 load('train_set/words_train.mat');
 load('train_set/train_img_prob.mat');
