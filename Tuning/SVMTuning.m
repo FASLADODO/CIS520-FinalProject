@@ -8,7 +8,7 @@ load('train_set/words_train.mat');
 n = size(X, 1);
 X_projected = dim_reduce(full(X), 500);
 
-%% Linear Shits
+%% Linear Stuffs
 [train_error, val_error] = crossValError(@(X_train, Y_train, X_test) ...
         getYHatLinear(X_train, Y_train, X_test), ...
         X_projected, Y, 10);
