@@ -20,24 +20,24 @@ just wrap repeated calls to crossValError in for loops that iterated over
 possible hyperparameters.
 
 ## Generative Method: 
-Model: Naive Bayes
-Files: NaiveBaes.m, getYHatNB.m
-How to run: run('NaiveBaes.m')
+Model: Naive Bayes  
+Files: NaiveBaes.m, getYHatNB.m  
+How to run: run('NaiveBaes.m')  
 
 ## Discriminative Method: 
-Model: SVM
-Files: SVM.m, getYHatSVM.m, SVMTuned.m
-How to run: run('SVM.m')
+Model: SVM  
+Files: SVM.m, getYHatSVM.m, SVMTuned.m  
+How to run: run('SVM.m')  
 
 ## Instance Based Method: 
-Model: KNN
-Files: KNN.m, getYHatKNN.m
-How to run: run('KNN.m')
+Model: KNN  
+Files: KNN.m, getYHatKNN.m  
+How to run: run('KNN.m')  
 
 ## Semi-Supervised Dimensionality Reduction: 
-Model: PCA
-Files: dim_reduce.m
-How to run: dim_reduce(X, desiredNumberOfComponents)
+Model: PCA  
+Files: dim_reduce.m  
+How to run: dim_reduce(X, desiredNumberOfComponents)  
 
 
 ## Other things we tried:
