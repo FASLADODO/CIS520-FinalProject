@@ -53,6 +53,8 @@ Model: PCA
 Files: dim_reduce.m, getSemiSupervisedProjections.m  
 How to run: dim_reduce(X, desiredNumberOfComponents), 
             getSemiSupervisedProjections()
+Train error: N/A (other methods used PCA, though)  
+Validation error:  N/A (other methods used PCA, though)  
 
 
 ## Other things we tried:
@@ -81,3 +83,9 @@ discrimEnsemble.m) in UnusedModels/Ensembling
 - GMM (GMM.m, getYHatGMM.m) in UnusedModels/
 
 - Isomap (Isomap.m, IsomapTuning.m, L2_distance.m) in UnusedModels/Isomap
+
+## To-Do (things we wanted to try but didn't get a chance to):
+- Using LSTMs for the sentiment analysis (but we doubt there is enough data)
+- Using unsupervised models to "label" the unlabeled data, giving more data
+to our supervised models. We would downweight this new data, however.
+- More work on stacking
