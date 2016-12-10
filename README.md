@@ -1,5 +1,5 @@
 # CIS520-FinalProject
-### Team Members:
+## Team Members:
 Seth Bartynski (sbarty), Trevin Gandhi (gandhit), Brady Neal (nealb)
 
 ## Code explanation: 
