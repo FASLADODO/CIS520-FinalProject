@@ -24,26 +24,34 @@ possible hyperparameters.
 ## Notes:
 - All getYHatXXX functions are in the Models/ folder
 - Functions such as cross validation and plotting are in the Utils/ folder
+- All train and validation errors below were the results from 10-fold
+cross validation
 
 ## Generative Method: 
 Model: Naive Bayes  
 Files: NaiveBaes.m, getYHatNB.m  
 How to run: run('NaiveBaes.m')  
+Train error: 0.307481  
+Validation error: 0.326000  
 
 ## Discriminative Method: 
 Model: SVM  
 Files: SVM.m, getYHatSVM.m, SVMTuned.m  
 How to run: run('SVM.m')  
+Train error: 0.136691  
+Validation error: 0.204444  
 
 ## Instance Based Method: 
 Model: KNN  
 Files: KNN.m, getYHatKNN.m  
 How to run: run('KNN.m')  
+Train error: 0.208691  
+Validation error: 0.271333  
 
 ## Semi-Supervised Dimensionality Reduction: 
 Model: PCA  
-Files: dim_reduce.m, getSemiSupervisedProjections
-How to run: dim_reduce(X, desiredNumberOfComponents),
+Files: dim_reduce.m, getSemiSupervisedProjections.m  
+How to run: dim_reduce(X, desiredNumberOfComponents), 
             getSemiSupervisedProjections()
 
 
