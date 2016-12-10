@@ -38,3 +38,20 @@ How to run: run('KNN.m')
 Model: PCA
 Files: dim_reduce.m
 How to run: dim_reduce(X, desiredNumberOfComponents)
+
+
+## Other things we tried:
+- Neural Networks (NNTuning.m, NeuralNetworkCortexsys.m, 
+NeuralNetworkLightNet.m, getOneHotY.m, getYHatNN.m)
+- GloVe (loadGloVe.m, GloVe.m, gloveTransform.m)
+- Random Forest (RandomForest.m, RandomForestTuned.m, random_forest.m,
+getYHatRandomForest.m)
+- Logistic Regression (LogisticTuned.m)
+- Discriminant Ensemble over Random Subspaces (Ensemble.m, getYHatEnsemble.m,
+discrimEnsemble.m)
+- RBF SVM (RBFTuned.m)
+- Stacking (Stacking.m, getYHatStacking.m)
+- TF/IDF (tfidf.m)
+- Boosting (Boosting.m)
+- GMM (GMM.m, getYHatGMM.m)
+- Isomap (Isomap.m, IsomapTuning.m, L2_distance.m)
