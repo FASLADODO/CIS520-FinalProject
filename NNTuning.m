@@ -6,7 +6,7 @@ X_projected = full(X);
 
 Ynew = getOneHotY(Y);
 net = patternnet(500);
-% net.layers{1}.transferFcn = 'poslin';
+net.layers{1}.transferFcn = 'poslin';
 net.trainFcn = 'trainscg';
 
 net.divideFcn = 'dividerand';
